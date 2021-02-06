@@ -1,11 +1,48 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { 
+    View, 
+    ScrollView,
+    Text,
+    TextInput, 
+    Button,
+    StyleSheet 
+} from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import Colors from '../constants/Colors';
+import * as destinationsActions from '../store/actions/destinations';
 
 const NewDestinationScreen = props => {
+    const [nameValue, setNameValue] = useState('');
+
+    const dispatch = useDispatch();
+
+    const nameChangeHandler = text => {
+        // TODO: add validation
+        setNameValue(text);
+    };
+
+    const saveDestinationHandler = () => {
+        dispatch(destinationsActions.addDestination(nameValue));
+        props.navigation.goBack();
+    };
+
     return (
-        <View>
-            <Text>NewDestinationScreen</Text>
-        </View>
+        <ScrollView>
+            <View style={styles.form}>
+                <Text style={styles.label}>Name</Text>
+                <TextInput 
+                    style={styles.textInput}
+                    onChange={nameChangeHandler} 
+                    value={nameValue}
+                />
+                <Button
+                    title="Save"
+                    color={Colors.primary} 
+                    onPress={saveDestinationHandler}
+                />
+            </View>
+        </ScrollView>
     );
 };
 
@@ -15,6 +52,21 @@ NewDestinationScreen.navigationOptions = navigationData => {
     };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    form: {
+        margin: 30
+    },
+    label: {
+        fontSize: 18,
+        marginBottom: 15
+    },
+    textInput: {
+        borderBottomColor: Colors.gray,
+        borderBottomWidth: 1,
+        marginBottom: 15,
+        paddingVertical: 4,
+        paddingHorizontal: 2
+    }
+});
 
 export default NewDestinationScreen;
