@@ -14,7 +14,7 @@ const DestinationsListScreen = props => {
 
 DestinationsListScreen.navigationOptions = navigationData => {
     return {
-        headerTitle: 'All Destinations',
+        headerTitle: 'Destinations',
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item 
@@ -27,7 +27,6 @@ DestinationsListScreen.navigationOptions = navigationData => {
             </HeaderButtons>
         )
     };
-    
 };
 
 const styles = StyleSheet.create({});

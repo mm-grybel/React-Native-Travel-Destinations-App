@@ -9,6 +9,12 @@ const NewDestinationScreen = props => {
     );
 };
 
+NewDestinationScreen.navigationOptions = navigationData => {
+    return {
+        headerTitle: 'Add Destination'
+    };
+};
+
 const styles = StyleSheet.create({});
 
 export default NewDestinationScreen;
