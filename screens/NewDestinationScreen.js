@@ -33,7 +33,7 @@ const NewDestinationScreen = props => {
                 <Text style={styles.label}>Name</Text>
                 <TextInput 
                     style={styles.textInput}
-                    onChange={nameChangeHandler} 
+                    onChangeText={nameChangeHandler} 
                     value={nameValue}
                 />
                 <Button

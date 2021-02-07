@@ -9,6 +9,12 @@ const DestinationDetailScreen = props => {
     );
 };
 
+DestinationDetailScreen.navigationOptions = navigationData => {
+    return {
+        headerTitle: navigationData.navigation.getParam('destinationName')
+    };
+};
+
 const styles = StyleSheet.create({});
 
 export default DestinationDetailScreen;

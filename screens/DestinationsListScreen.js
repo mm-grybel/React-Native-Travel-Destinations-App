@@ -1,14 +1,36 @@
 import React from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { 
+    FlatList, 
+    Platform, 
+    StyleSheet 
+} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
 import CustomHeaderButton from '../components/CustomHeaderButton';
+import DestinationItem from '../components/DestinationItem';
 
 const DestinationsListScreen = props => {
+    const destinations = useSelector(state => state.destinations.destinations);
+    
     return (
-        <View>
-            <Text>DestinationsListScreen</Text>
-        </View>
+        <FlatList 
+            data={destinations}
+            keyExtractor={item => item.id}
+            renderItem={itemData => (
+                <DestinationItem 
+                    image={null}
+                    name={itemData.item.name}
+                    address={null}
+                    onSelect={() => {
+                        props.navigation.navigate('DestinationDetail', {
+                            destinationName: itemData.item.name,
+                            destinationId: itemData.item.id
+                        });
+                    }}
+                />
+            )}
+        />
     );
 };
 
