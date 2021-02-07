@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 
+import ImageSelector from '../components/ImageSelector';
 import Colors from '../constants/Colors';
 import * as destinationsActions from '../store/actions/destinations';
 
@@ -36,6 +37,7 @@ const NewDestinationScreen = props => {
                     onChangeText={nameChangeHandler} 
                     value={nameValue}
                 />
+                <ImageSelector />
                 <Button
                     title="Save"
                     color={Colors.primary} 
