@@ -10,6 +10,7 @@ import {
 import { useDispatch } from 'react-redux';
 
 import ImageSelector from '../components/ImageSelector';
+import LocationSelector from '../components/LocationSelector';
 import Colors from '../constants/Colors';
 import * as destinationsActions from '../store/actions/destinations';
 
@@ -45,6 +46,7 @@ const NewDestinationScreen = props => {
                 <ImageSelector 
                     onPhotoTaken={photoTakenHandler}
                 />
+                <LocationSelector />
                 <Button
                     title="Save"
                     color={Colors.primary} 
