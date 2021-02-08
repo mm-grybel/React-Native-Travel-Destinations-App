@@ -30,7 +30,7 @@ export const addDestination = (name, image) => {
                 destinationData: {
                     id: dbResult.insertId,
                     name: name,
-                    image: image
+                    image: newPath
                 }
             });
         } catch (err) {
