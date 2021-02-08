@@ -19,7 +19,7 @@ const DestinationsListScreen = props => {
             keyExtractor={item => item.id}
             renderItem={itemData => (
                 <DestinationItem 
-                    image={null}
+                    image={itemData.item.imageUri}
                     name={itemData.item.name}
                     address={null}
                     onSelect={() => {

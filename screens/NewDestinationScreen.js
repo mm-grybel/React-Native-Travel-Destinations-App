@@ -15,6 +15,7 @@ import * as destinationsActions from '../store/actions/destinations';
 
 const NewDestinationScreen = props => {
     const [nameValue, setNameValue] = useState('');
+    const [selectedImage, setSelectedImage] = useState();
 
     const dispatch = useDispatch();
 
@@ -23,8 +24,12 @@ const NewDestinationScreen = props => {
         setNameValue(text);
     };
 
+    const photoTakenHandler = imagePath => {
+        setSelectedImage(imagePath);
+    };
+
     const saveDestinationHandler = () => {
-        dispatch(destinationsActions.addDestination(nameValue));
+        dispatch(destinationsActions.addDestination(nameValue, selectedImage));
         props.navigation.goBack();
     };
 
@@ -37,7 +42,9 @@ const NewDestinationScreen = props => {
                     onChangeText={nameChangeHandler} 
                     value={nameValue}
                 />
-                <ImageSelector />
+                <ImageSelector 
+                    onPhotoTaken={photoTakenHandler}
+                />
                 <Button
                     title="Save"
                     color={Colors.primary} 

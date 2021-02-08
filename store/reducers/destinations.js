@@ -10,7 +10,8 @@ export default (state = initialState, action) => {
         case ADD_DESTINATION:
             const newDestination = new Destination(
                 new Date().toString(), // ID
-                action.destinationData.name
+                action.destinationData.name,
+                action.destinationData.image
             );
             return {
                 destinations: state.destinations.concat(newDestination)
