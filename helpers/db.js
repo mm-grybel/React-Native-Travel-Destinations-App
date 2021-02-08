@@ -1,5 +1,4 @@
 import * as SQLite from 'expo-sqlite';
-import { exp } from 'react-native-reanimated';
 
 const db = SQLite.openDatabase('destinations.db');
 
@@ -27,6 +26,24 @@ export const insertDestination = (name, imageUri, address, latitude, longitude) 
             tx.executeSql(
                 `INSERT INTO destinations (name, imageUri, address, latitude, longitude) VALUES (?, ?, ?, ?, ?);`,
                 [name, imageUri, address, latitude, longitude],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            );
+        });
+    });
+    return promise;
+};
+
+export const fetchDestinations = () => {
+    const promise = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'SELECT * destinations;',
+                [],
                 (_, result) => {
                     resolve(result);
                 },

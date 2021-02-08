@@ -1,8 +1,9 @@
 import * as FileSystem from 'expo-file-system';
 
-import { insertDestination } from '../../helpers/db';
+import { fetchDestinations, insertDestination } from '../../helpers/db';
 
 export const ADD_DESTINATION = 'ADD_DESTINATION';
+export const SET_DESTINATIONS = 'SET_DESTINATIONS';
 
 export const addDestination = (name, image) => {
     return async dispatch => {
@@ -35,6 +36,22 @@ export const addDestination = (name, image) => {
         } catch (err) {
             // TODO: store errors on an analytics server
             console.log(err);
+            throw err;
+        }
+    };
+};
+
+export const loadDestinations = () => {
+    return async dispatch => {
+        try {
+            const dbResult = await fetchDestinations();
+            console.log(dbResult);
+
+            dispatch({
+                type: SET_DESTINATIONS,
+                destinations: dbResult.rows._array
+            });
+        } catch (err) {
             throw err;
         }
     };
