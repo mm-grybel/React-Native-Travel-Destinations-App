@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_DESTINATION:
             const newDestination = new Destination(
-                new Date().toString(), // ID
+                action.destinationData.id.toString(),
                 action.destinationData.name,
                 action.destinationData.image
             );
