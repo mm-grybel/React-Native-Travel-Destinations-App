@@ -46,7 +46,7 @@ const NewDestinationScreen = props => {
                 <ImageSelector 
                     onPhotoTaken={photoTakenHandler}
                 />
-                <LocationSelector />
+                <LocationSelector navigation={props.navigation} />
                 <Button
                     title="Save"
                     color={Colors.primary} 
