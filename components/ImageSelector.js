@@ -16,7 +16,10 @@ const ImageSelector = props => {
     const [selectedImage, setSelectedImage] = useState();
 
     const verifyPermissions = async () => {
-        const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+        const result = await Permissions.askAsync(
+            Permissions.CAMERA, 
+            Permissions.CAMERA_ROLL
+        );
 
         if (result.status !== 'granted') {
             Alert.alert(
@@ -59,7 +62,7 @@ const ImageSelector = props => {
                 )}
             </View>
             <Button 
-                title="Take a Photo" 
+                title="Take Photo" 
                 color={Colors.primary} 
                 onPress={takePhotoHandler}
             />

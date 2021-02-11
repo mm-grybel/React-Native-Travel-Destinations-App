@@ -11,7 +11,7 @@ const DestinationDetailScreen = props => {
         state.destinations.destinations.find(destination => destination.id === destinationId)
     );
 
-    const selectedLocation = { latitude: selectedDestination.latitude, longitude: selectedDestination.longitude };
+    const selectedLocation = { lat: selectedDestination.lat, lng: selectedDestination.lng };
 
     const showMapHandler = () => {
         props.navigation.navigate('Map', {

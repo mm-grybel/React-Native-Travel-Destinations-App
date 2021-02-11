@@ -55,12 +55,12 @@ const LocationSelector = props => {
             });
             // console.log(location);
             setSelectedLocation({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                lat: location.coords.latitude,
+                lng: location.coords.longitude
             });
             props.onLocationSelected({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                lat: location.coords.latitude,
+                lng: location.coords.longitude
             });
         } catch (err) {
             Alert.alert(

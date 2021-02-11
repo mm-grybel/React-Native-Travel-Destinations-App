@@ -15,8 +15,8 @@ export default (state = initialState, action) => {
                         dest.name, 
                         dest.imageUri,
                         dest.address,
-                        dest.latitude,
-                        dest.longitude
+                        dest.lat,
+                        dest.lng
                     )
                 )
             };
@@ -26,8 +26,8 @@ export default (state = initialState, action) => {
                 action.destinationData.name,
                 action.destinationData.image,
                 action.destinationData.address,
-                action.destinationData.coords.latitude,
-                action.destinationData.coords.longitude
+                action.destinationData.coords.lat,
+                action.destinationData.coords.lng
             );
             return {
                 destinations: state.destinations.concat(newDestination)

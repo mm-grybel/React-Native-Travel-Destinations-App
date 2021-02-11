@@ -10,9 +10,9 @@ export const addDestination = (name, image, location) => {
     return async dispatch => {
         const response = await fetch(
             `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-                location.latitude
+                location.lat
             },${
-                location.longitude
+                location.lng
             }&key=${ENV.googleApiKey}`
         );
 
@@ -41,8 +41,8 @@ export const addDestination = (name, image, location) => {
                 name,
                 newPath,
                 address,
-                location.latitude,
-                location.longitude
+                location.lat,
+                location.lng
             );
             console.log(dbResult);
 
@@ -54,8 +54,8 @@ export const addDestination = (name, image, location) => {
                     image: newPath,
                     address: address,
                     coords: {
-                        latitude: location.latitude,
-                        longitude: location.longitude
+                        lat: location.lat,
+                        lng: location.lng
                     }
                 }
             });

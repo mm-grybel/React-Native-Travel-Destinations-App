@@ -1,13 +1,13 @@
 import { add } from "react-native-reanimated";
 
 class Destination {
-    constructor(id, name, imageUri, address, latitude, longitude) {
+    constructor(id, name, imageUri, address, lat, lng) {
         this.id = id;
         this.name = name;
         this.imageUri = imageUri;
         this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.lat = lat;
+        this.lng = lng;
     }
 }
 

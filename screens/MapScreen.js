@@ -11,8 +11,8 @@ const MapScreen = props => {
     const [selectedLocation, setSelectedLocation] = useState(initialLocation);
 
     const mapRegion = {
-        latitude: initialLocation ? initialLocation.latitude : 37.78,
-        longitude: initialLocation ? initialLocation.longitude : -122.43,
+        latitude: initialLocation ? initialLocation.lat : 37.78,
+        longitude: initialLocation ? initialLocation.lng : -122.43,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
     };
@@ -23,8 +23,8 @@ const MapScreen = props => {
         }
 
         setSelectedLocation({
-            latitude: event.nativeEvent.coordinate.latitude,
-            longitude: event.nativeEvent.coordinate.longitude
+            lat: event.nativeEvent.coordinate.latitude,
+            lng: event.nativeEvent.coordinate.longitude
         });
     };
 
@@ -50,8 +50,8 @@ const MapScreen = props => {
 
     if (selectedLocation) {
         markerCoordinates = {
-            latitude: selectedLocation.latitude,
-            longitude: selectedLocation.longitude
+            latitude: selectedLocation.lat,
+            longitude: selectedLocation.lng
         };
     }
 

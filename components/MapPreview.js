@@ -8,12 +8,12 @@ const MapPreview = props => {
 
     if (props.location) {
         imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${
-            props.location.latitude
+            props.location.lat
         },${
-            props.location.longitude
+            props.location.lng
         }&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:A%7C${
-            props.location.latitude
-        },${props.location.longitude}&key=${ENV.googleApiKey}`;
+            props.location.lat
+        },${props.location.lng}&key=${ENV.googleApiKey}`;
     }
 
     return (
