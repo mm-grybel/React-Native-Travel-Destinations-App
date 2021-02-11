@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
-import { 
-    FlatList, 
-    Platform, 
-    StyleSheet 
-} from 'react-native';
+import { FlatList, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -56,7 +52,5 @@ DestinationsListScreen.navigationOptions = navigationData => {
         )
     };
 };
-
-const styles = StyleSheet.create({});
 
 export default DestinationsListScreen;

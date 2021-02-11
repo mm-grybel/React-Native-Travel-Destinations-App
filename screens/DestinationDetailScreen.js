@@ -1,5 +1,11 @@
 import React from 'react';
-import { ScrollView, Image, View, Text, StyleSheet } from 'react-native';
+import { 
+    ScrollView, 
+    Image, 
+    View, 
+    Text, 
+    StyleSheet 
+} from 'react-native';
 import { useSelector } from 'react-redux';
 
 import MapPreview from '../components/MapPreview';
