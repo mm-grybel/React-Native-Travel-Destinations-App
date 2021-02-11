@@ -27,7 +27,7 @@ const DestinationsListScreen = props => {
                 <DestinationItem 
                     image={itemData.item.imageUri}
                     name={itemData.item.name}
-                    address={null}
+                    address={itemData.item.address}
                     onSelect={() => {
                         props.navigation.navigate('DestinationDetail', {
                             destinationName: itemData.item.name,
