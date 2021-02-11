@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { 
     View, 
     ScrollView,
@@ -17,6 +17,7 @@ import * as destinationsActions from '../store/actions/destinations';
 const NewDestinationScreen = props => {
     const [nameValue, setNameValue] = useState('');
     const [selectedImage, setSelectedImage] = useState();
+    const [selectedLocation, setSelectedLocation] = useState();
 
     const dispatch = useDispatch();
 
@@ -29,8 +30,12 @@ const NewDestinationScreen = props => {
         setSelectedImage(imagePath);
     };
 
+    const locationSelectedHandler = useCallback(location => {
+        setSelectedLocation(location);
+    }, [setSelectedLocation]);
+
     const saveDestinationHandler = () => {
-        dispatch(destinationsActions.addDestination(nameValue, selectedImage));
+        dispatch(destinationsActions.addDestination(nameValue, selectedImage, selectedLocation));
         props.navigation.goBack();
     };
 
@@ -46,7 +51,10 @@ const NewDestinationScreen = props => {
                 <ImageSelector 
                     onPhotoTaken={photoTakenHandler}
                 />
-                <LocationSelector navigation={props.navigation} />
+                <LocationSelector 
+                    navigation={props.navigation} 
+                    onLocationSelected={locationSelectedHandler}
+                />
                 <Button
                     title="Save"
                     color={Colors.primary} 
