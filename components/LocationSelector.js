@@ -10,6 +10,7 @@ import {
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
+import MapPreview from './MapPreview';
 import Colors from '../constants/Colors';
 
 const LocationSelector = props => {
@@ -41,7 +42,7 @@ const LocationSelector = props => {
             const location = await Location.getCurrentPositionAsync({
                 timeout: 5000
             });
-            console.log(location);
+            // console.log(location);
             setSelectedLocation({
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude
@@ -58,13 +59,13 @@ const LocationSelector = props => {
 
     return (
         <View style={styles.locationSelector}>
-            <View style={styles.mapPreview}>
+            <MapPreview style={styles.mapPreview} location={selectedLocation}>
                 {isLoading ? (
                     <ActivityIndicator size="large" color={Colors.primary} />
                 ) : (
                     <Text>No location selected yet.</Text>
                 )}
-            </View>
+            </MapPreview>
             <Button 
                 title="Get User Location"
                 color={Colors.primary}
@@ -83,9 +84,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 150,
         borderColor: Colors.gray,
-        borderWidth: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        borderWidth: 1
     }
 });
 
