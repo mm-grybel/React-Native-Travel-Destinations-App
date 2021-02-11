@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     View,
     Text,
@@ -16,6 +16,14 @@ import Colors from '../constants/Colors';
 const LocationSelector = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState();
+
+    const mapSelectedLocation = props.navigation.getParam('selectedLocation');
+
+    useEffect(() => {
+        if (mapSelectedLocation) {
+            setSelectedLocation(mapSelectedLocation);
+        }
+    }, [mapSelectedLocation]);
 
     const verifyPermissions = async () => {
         const result = await Permissions.askAsync(Permissions.LOCATION);
