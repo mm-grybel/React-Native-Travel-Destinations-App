@@ -1,12 +1,33 @@
 import * as FileSystem from 'expo-file-system';
 
 import { fetchDestinations, insertDestination } from '../../helpers/db';
+import ENV from '../../env';
 
 export const ADD_DESTINATION = 'ADD_DESTINATION';
 export const SET_DESTINATIONS = 'SET_DESTINATIONS';
 
-export const addDestination = (name, image) => {
+export const addDestination = (name, image, location) => {
     return async dispatch => {
+        const response = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
+                location.latitude
+            },${
+                location.longitude
+            }&key=${ENV.googleApiKey}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Something went wrong!');
+        }
+
+        const responseData = await response.json();
+        // console.log(responseData);
+        if (!responseData.results) {
+            throw new Error('Something went wrong!');
+        }
+
+        const address = responseData.results[0].formatted_address;
+
         const fileName = image.split('/').pop(); // the last part of the path
         const newPath = FileSystem.documentDirectory + fileName;
 
@@ -19,9 +40,9 @@ export const addDestination = (name, image) => {
             const dbResult = await insertDestination(
                 name,
                 newPath,
-                '45 Rockefeller Plaza, New York, NY 10111, United States',
-                40.7128,
-                74.0060
+                address,
+                location.latitude,
+                location.longitude
             );
             console.log(dbResult);
 
@@ -30,7 +51,12 @@ export const addDestination = (name, image) => {
                 destinationData: {
                     id: dbResult.insertId,
                     name: name,
-                    image: newPath
+                    image: newPath,
+                    address: address,
+                    coords: {
+                        latitude: location.latitude,
+                        longitude: location.longitude
+                    }
                 }
             });
         } catch (err) {

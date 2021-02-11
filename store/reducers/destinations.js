@@ -10,14 +10,24 @@ export default (state = initialState, action) => {
         case SET_DESTINATIONS:
             return {
                 destinations: action.destinations.map(
-                    dest => new Destination(dest.id.toString(), dest.name, dest.imageUri)
+                    dest => new Destination(
+                        dest.id.toString(), 
+                        dest.name, 
+                        dest.imageUri,
+                        dest.address,
+                        dest.latitude,
+                        dest.longitude
+                    )
                 )
             };
         case ADD_DESTINATION:
             const newDestination = new Destination(
                 action.destinationData.id.toString(),
                 action.destinationData.name,
-                action.destinationData.image
+                action.destinationData.image,
+                action.destinationData.address,
+                action.destinationData.coords.latitude,
+                action.destinationData.coords.longitude
             );
             return {
                 destinations: state.destinations.concat(newDestination)
