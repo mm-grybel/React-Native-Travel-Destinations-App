@@ -4,4 +4,4 @@ export default {
     gray: '#cccccc',
     darkGray: '#666666',
     black: '#000000'
-}
+};
