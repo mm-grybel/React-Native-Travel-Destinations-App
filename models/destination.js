@@ -1,5 +1,3 @@
-import { add } from "react-native-reanimated";
-
 class Destination {
     constructor(id, name, imageUri, address, lat, lng) {
         this.id = id;
